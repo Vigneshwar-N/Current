@@ -4,6 +4,7 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import React, {useContext, useEffect, useState} from 'react';
 import {
@@ -20,12 +21,15 @@ import {myColor} from '../utility/Colors/myColors';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 import {UserContext, UserContextProvider} from '../Hooks/User';
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
+
 export default function SignUp({navigation}) {
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
+  const [secureTextEntry1, setSecureTextEntry1] = useState(true);
   const {data, setData} = useContext(UserContext);
   // console.log(`This is data:${data}`);
   const [box, setBox] = useState(false);
   const [boxDisable, setBoxDisable] = useState(true);
-
   const [state, setState] = useState({
     name: '',
     mail: '',
@@ -34,7 +38,6 @@ export default function SignUp({navigation}) {
   });
   const [editable, setEditable] = useState(true);
   // console.log(state.name, state.mail, state.password, state.confirmPassword);
-
   useEffect(() => {
     console.log(`1im working`);
     if (
@@ -158,7 +161,7 @@ export default function SignUp({navigation}) {
               <TextInput
                 editable={editable}
                 maxLength={12}
-                secureTextEntry
+                secureTextEntry={secureTextEntry}
                 style={{
                   fontSize: getResponsiveFontSize(18),
                   width: wp(80),
@@ -173,7 +176,25 @@ export default function SignUp({navigation}) {
                   handlePassword(text);
                 }}
               />
-              <Text>Hello</Text>
+              <TouchableOpacity
+                onPress={() => {
+                  setSecureTextEntry(!secureTextEntry);
+                }}>
+                {!secureTextEntry && (
+                  <Image
+                    resizeMode="contain"
+                    style={{height: 25, width: 25}}
+                    source={require('../../assets/images/eye.png')}
+                  />
+                )}
+                {secureTextEntry && (
+                  <Image
+                    resizeMode="contain"
+                    style={{height: 25, width: 25}}
+                    source={require('../../assets/images/hidden.png')}
+                  />
+                )}
+              </TouchableOpacity>
             </View>
 
             <View
@@ -190,7 +211,7 @@ export default function SignUp({navigation}) {
               <TextInput
                 editable={editable}
                 maxLength={12}
-                secureTextEntry
+                secureTextEntry={secureTextEntry1}
                 style={{
                   fontSize: getResponsiveFontSize(18),
                   width: wp(80),
@@ -205,7 +226,25 @@ export default function SignUp({navigation}) {
                   handleConfirmPassword(text);
                 }}
               />
-              <Text>Hello</Text>
+              <TouchableOpacity
+                onPress={() => {
+                  setSecureTextEntry1(!secureTextEntry1);
+                }}>
+                {!secureTextEntry1 && (
+                  <Image
+                    resizeMode="contain"
+                    style={{height: 25, width: 25}}
+                    source={require('../../assets/images/eye.png')}
+                  />
+                )}
+                {secureTextEntry1 && (
+                  <Image
+                    resizeMode="contain"
+                    style={{height: 25, width: 25}}
+                    source={require('../../assets/images/hidden.png')}
+                  />
+                )}
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -236,7 +275,7 @@ export default function SignUp({navigation}) {
             </Text>
           </View>
           <TouchableOpacity
-            disabled={boxDisable}
+            disabled={!box}
             style={{
               marginTop: hp(4),
               justifyContent: 'center',

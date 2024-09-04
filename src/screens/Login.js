@@ -1,5 +1,5 @@
-import React from 'react';
-import {Text, View, TextInput, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
+import {Text, View, TextInput, TouchableOpacity, Image} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -7,8 +7,10 @@ import {
 import {getResponsiveFontSize} from '../utility/responsive';
 import {fonts} from '../constants/fonts/font';
 import {myColor} from '../utility/Colors/myColors';
+import * as Animatable from 'react-native-animatable';
 
 function Login({navigation}) {
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
   return (
     <View
       style={{
@@ -23,7 +25,8 @@ function Login({navigation}) {
           // backgroundColor: '#ACA',
           justifyContent: 'center',
         }}>
-        <Text
+        <Animatable.Text
+          animation={'fadeInDownBig'}
           style={{
             alignSelf: 'center',
             color: '#000000',
@@ -31,28 +34,31 @@ function Login({navigation}) {
             fontFamily: fonts.PlayfairDisplayBold,
           }}>
           Login
-        </Text>
+        </Animatable.Text>
         <View style={{marginTop: hp(3), marginBottom: hp(0)}}>
-          <TextInput
-            autoCapitalize="none"
-            keyboardType="email-address"
-            style={{
-              fontSize: getResponsiveFontSize(18),
-              width: wp(92),
-              borderWidth: 1,
-              paddingTop: '3%',
-              paddingBottom: '3%',
-              borderRadius: 50,
-              paddingLeft: wp(3),
-              color: myColor.black,
-              fontFamily: fonts.WorkSansMedium,
-              borderColor: '#000000',
-              marginTop: '2%',
-              marginBottom: '3%',
-            }}
-            placeholder="Mail"
-          />
-          <View
+          <Animatable.View animation={'fadeInLeft'}>
+            <TextInput
+              autoCapitalize="none"
+              keyboardType="email-address"
+              style={{
+                fontSize: getResponsiveFontSize(18),
+                width: wp(92),
+                borderWidth: 1,
+                paddingTop: '3%',
+                paddingBottom: '3%',
+                borderRadius: 50,
+                paddingLeft: wp(3),
+                color: myColor.black,
+                fontFamily: fonts.WorkSansMedium,
+                borderColor: '#000000',
+                marginTop: '2%',
+                marginBottom: '3%',
+              }}
+              placeholder="Mail"
+            />
+          </Animatable.View>
+          <Animatable.View
+            animation={'fadeInRight'}
             style={{
               flexDirection: 'row',
               alignItems: 'center',
@@ -65,7 +71,7 @@ function Login({navigation}) {
             }}>
             <TextInput
               maxLength={12}
-              secureTextEntry
+              secureTextEntry={secureTextEntry}
               style={{
                 fontSize: getResponsiveFontSize(18),
                 width: wp(80),
@@ -77,8 +83,26 @@ function Login({navigation}) {
               }}
               placeholder="Password"
             />
-            <Text>Hello</Text>
-          </View>
+            <TouchableOpacity
+              onPress={() => {
+                setSecureTextEntry(!secureTextEntry);
+              }}>
+              {!secureTextEntry && (
+                <Image
+                  resizeMode="contain"
+                  style={{height: 25, width: 25}}
+                  source={require('../../assets/images/eye.png')}
+                />
+              )}
+              {secureTextEntry && (
+                <Image
+                  resizeMode="contain"
+                  style={{height: 25, width: 25}}
+                  source={require('../../assets/images/hidden.png')}
+                />
+              )}
+            </TouchableOpacity>
+          </Animatable.View>
         </View>
         <TouchableOpacity
           onPress={() => {
