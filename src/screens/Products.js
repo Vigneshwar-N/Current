@@ -27,8 +27,8 @@ import {data2} from '../constants/data2';
 const Products = ({navigation}) => {
   const {selectedItem, setSelectedItem} = useContext(SelectedItemContext);
 
-  // const Storage = UseEffect();
-  const Storage = data2[0].products;
+  const Storage = UseEffect();
+  // const Storage = data2[0].products;
   const darkTheme = useSelector(state => state.theme.darkTheme);
 
   const [data, setData] = useState(Storage.slice(0, 10));

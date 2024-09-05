@@ -1,11 +1,8 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {ThemeContext, ThemeProvider} from '../Hooks/UseContext';
+import {ThemeProvider} from '../Hooks/UseContext';
 import {View, StyleSheet} from 'react-native';
 import {myColor} from '../utility/Colors/myColors';
-import {BottomNavigator} from './BottomTabs';
-import {DrawerNavigator} from './DrawerNavigator';
-import DataContainer from '../apis/DataContainer';
 import RootStack from './RootStack';
 import {useSelector} from 'react-redux';
 function Navigator() {

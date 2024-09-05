@@ -32,8 +32,8 @@ export default function Search({navigation}) {
   const [input, setInput] = useState('');
   const [filteredData, setFilteredData] = useState([]);
   const {selectedItem, setSelectedItem} = useContext(SelectedItemContext);
-  // const Storage = UseEffect();
-  const Storage = data2[0].products;
+  const Storage = UseEffect();
+  // const Storage = data2[0].products;
   const data = useState(null);
 
   useEffect(() => {

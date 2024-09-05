@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React, {useEffect} from 'react';
 import * as Animatable from 'react-native-animatable';
 import {fonts} from '../constants/fonts/font';

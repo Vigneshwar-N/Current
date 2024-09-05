@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {
   View,
   Text,
@@ -8,7 +8,6 @@ import {
   StyleSheet,
 } from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {data2} from '../constants/data2';
 import {useSelector} from 'react-redux';
 import {
   getResponsiveFontSize,
@@ -18,7 +17,6 @@ import {
 import {fonts} from '../constants/fonts/font';
 import HeartImage from '../../assets/images/svgs/Home/Heart';
 import UseEffect from '../Hooks/UseEffect';
-import {ThemeContext} from '../Hooks/UseContext';
 import {myColor} from '../utility/Colors/myColors';
 import {SelectedItemContext} from '../apis/PassData';
 
