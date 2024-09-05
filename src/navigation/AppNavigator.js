@@ -7,8 +7,9 @@ import {BottomNavigator} from './BottomTabs';
 import {DrawerNavigator} from './DrawerNavigator';
 import DataContainer from '../apis/DataContainer';
 import RootStack from './RootStack';
+import {useSelector} from 'react-redux';
 function Navigator() {
-  const {darkTheme} = useContext(ThemeContext);
+  const darkTheme = useSelector(state => state.theme.darkTheme);
   return (
     <View
       style={[
@@ -17,7 +18,6 @@ function Navigator() {
       ]}>
       <NavigationContainer>
         <RootStack />
-        {/* <DataContainer /> */}
       </NavigationContainer>
     </View>
   );

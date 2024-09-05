@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {data2} from '../constants/data2';
+import {useSelector} from 'react-redux';
 import {
   getResponsiveFontSize,
   getResponsiveHeight,
@@ -25,8 +26,7 @@ export default function List({navigation}) {
   const Storage = UseEffect();
   const {selectedItem, setSelectedItem} = useContext(SelectedItemContext);
   console.log(`this is selected,${selectedItem}`);
-
-  const {darkTheme} = useContext(ThemeContext);
+  const darkTheme = useSelector(state => state.theme.darkTheme);
 
   return (
     <View

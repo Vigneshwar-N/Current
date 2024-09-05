@@ -1,12 +1,15 @@
 import React from 'react';
-import {ThemeProvider} from '@react-navigation/native';
+import {Provider} from 'react-redux';
 import AppNavigator from './navigation/AppNavigator';
+import store from '../store/store';
+import Settings from './screens/Settings';
 
 const App = () => {
   return (
-    <ThemeProvider>
+    <Provider store={store}>
+      {/* <Settings /> */}
       <AppNavigator />
-    </ThemeProvider>
+    </Provider>
   );
 };
 

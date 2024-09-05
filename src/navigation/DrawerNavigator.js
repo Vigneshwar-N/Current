@@ -3,6 +3,7 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import Settings from '../screens/Settings';
 import {BottomNavigator} from './BottomTabs';
+import {useSelector} from 'react-redux';
 import {
   getResponsiveHeight,
   getResponsiveFontSize,
@@ -19,7 +20,7 @@ import CustomText from '../components/Text';
 const Drawer = createDrawerNavigator();
 
 export function DrawerNavigator() {
-  const {darkTheme} = useContext(ThemeContext);
+  const darkTheme = useSelector(state => state.theme.darkTheme);
 
   return (
     <Drawer.Navigator

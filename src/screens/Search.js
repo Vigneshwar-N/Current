@@ -25,8 +25,10 @@ import {SelectedItemContext} from '../apis/PassData';
 import UseEffect from '../Hooks/UseEffect';
 import {FlatList, ScrollView} from 'react-native-gesture-handler';
 import {data2} from '../constants/data2';
+import {useSelector} from 'react-redux';
 export default function Search({navigation}) {
-  const {darkTheme} = useContext(ThemeContext);
+  const darkTheme = useSelector(state => state.theme.darkTheme);
+
   const [input, setInput] = useState('');
   const [filteredData, setFilteredData] = useState([]);
   const {selectedItem, setSelectedItem} = useContext(SelectedItemContext);

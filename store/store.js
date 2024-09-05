@@ -1,10 +1,10 @@
-import {View, Text} from 'react-native';
-import React from 'react';
+import {configureStore} from '@reduxjs/toolkit';
+import themeReducer from './themeSlice'; // Import the theme slice
 
-export default function store() {
-  return (
-    <View>
-      <Text>store</Text>
-    </View>
-  );
-}
+const store = configureStore({
+  reducer: {
+    theme: themeReducer, // Add the theme reducer
+  },
+});
+
+export default store;

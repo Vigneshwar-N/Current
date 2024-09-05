@@ -22,14 +22,15 @@ import UseEffect from '../Hooks/UseEffect';
 import {ThemeContext} from '../Hooks/UseContext';
 import {myColor} from '../utility/Colors/myColors';
 import {SelectedItemContext} from '../apis/PassData';
+import {useSelector} from 'react-redux';
 import {data2} from '../constants/data2';
 const Products = ({navigation}) => {
   const {selectedItem, setSelectedItem} = useContext(SelectedItemContext);
 
   // const Storage = UseEffect();
   const Storage = data2[0].products;
+  const darkTheme = useSelector(state => state.theme.darkTheme);
 
-  const {darkTheme} = useContext(ThemeContext);
   const [data, setData] = useState(Storage.slice(0, 10));
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);

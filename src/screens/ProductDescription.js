@@ -13,10 +13,11 @@ import {fonts} from '../constants/fonts/font';
 import {myColor} from '../utility/Colors/myColors';
 import {SelectedItemContext} from '../apis/PassData';
 import {ThemeContext} from '../Hooks/UseContext';
-
+import {useSelector} from 'react-redux';
 const ProductDescription = () => {
   const {selectedItem} = useContext(SelectedItemContext);
-  const {darkTheme} = useContext(ThemeContext);
+  const darkTheme = useSelector(state => state.theme.darkTheme);
+
   return (
     <View
       style={{

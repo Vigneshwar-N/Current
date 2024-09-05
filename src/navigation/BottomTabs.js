@@ -8,11 +8,11 @@ import {StackNavigator} from './NativeStack';
 import {getResponsiveHeight, getResponsiveWidth} from '../utility/responsive';
 import {myColor} from '../utility/Colors/myColors';
 import {ThemeContext} from '../Hooks/UseContext';
-
+import {useSelector} from 'react-redux';
 const Bottom = createBottomTabNavigator();
 
 export function BottomNavigator() {
-  const {darkTheme} = useContext(ThemeContext);
+  const darkTheme = useSelector(state => state.theme.darkTheme);
 
   return (
     <View

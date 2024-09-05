@@ -22,10 +22,11 @@ import {myColor} from '../utility/Colors/myColors';
 import CustomText from './Text';
 import UseEffect from '../Hooks/UseEffect';
 import {FlatList} from 'react-native-gesture-handler';
-
+import {useSelector} from 'react-redux';
 export default function Header2() {
   const Storage = UseEffect();
-  const {darkTheme} = useContext(ThemeContext);
+  const darkTheme = useSelector(state => state.theme.darkTheme);
+
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleLeftArrowPress = () => {

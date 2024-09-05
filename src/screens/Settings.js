@@ -1,20 +1,15 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
 import {
   lightThemeStyles,
   darkThemeStyles,
   styles,
 } from '../components/styles/settingsStyle';
-import {ThemeContext} from '../Hooks/UseContext';
-
+import {toggleTheme} from '../../store/themeSlice'; //
 export default function Settings() {
-  const {darkTheme, toggleTheme} = useContext(ThemeContext);
-
-  if (darkTheme === undefined || toggleTheme === undefined) {
-    // Log an error or handle it if the context is not provided
-    console.error('ThemeContext is not provided');
-    return null;
-  }
+  const darkTheme = useSelector(state => state.theme.darkTheme);
+  const dispatch = useDispatch();
 
   const themeStyle = darkTheme ? darkThemeStyles : lightThemeStyles;
 
@@ -24,7 +19,8 @@ export default function Settings() {
 
       <TouchableOpacity
         style={[styles.button, themeStyle.button]}
-        onPress={toggleTheme}>
+        onPress={() => dispatch(toggleTheme())}>
+        {/* Dispatch the toggleTheme action */}
         <Text style={[styles.buttonText, themeStyle.text]}>Change Theme</Text>
       </TouchableOpacity>
     </View>
