@@ -1,14 +1,26 @@
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
 import React, {useEffect} from 'react';
 import * as Animatable from 'react-native-animatable';
 import {fonts} from '../constants/fonts/font';
 import {getResponsiveFontSize} from '../utility/responsive';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const Splash = ({navigation}) => {
   useEffect(() => {
+    const checkToken = async () => {
+      const token = await AsyncStorage.getItem('token');
+      if (token) {
+        navigation.replace('Data');
+      } else {
+        navigation.replace('Login');
+      }
+    };
+
     setTimeout(() => {
-      navigation.replace('Login');
+      checkToken();
     }, 2500);
   });
+
   return (
     <View
       style={{
@@ -32,5 +44,3 @@ const Splash = ({navigation}) => {
 };
 
 export default Splash;
-
-const styles = StyleSheet.create({});

@@ -5,12 +5,20 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {getResponsiveFontSize} from '../utility/responsive';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {fonts} from '../constants/fonts/font';
 import {myColor} from '../utility/Colors/myColors';
 import * as Animatable from 'react-native-animatable';
 
 function Login({navigation}) {
   const [secureTextEntry, setSecureTextEntry] = useState(true);
+  const [mail, setMail] = useState('');
+  const [token, setToken] = useState('');
+  console.log(mail);
+
+  const [password, setPassword] = useState('');
+  console.log(password);
+
   return (
     <View
       style={{
@@ -54,6 +62,8 @@ function Login({navigation}) {
                 marginTop: '2%',
                 marginBottom: '3%',
               }}
+              value={mail}
+              onChangeText={text => setMail(text)}
               placeholder="Mail"
             />
           </Animatable.View>
@@ -81,6 +91,8 @@ function Login({navigation}) {
                 color: myColor.black,
                 fontFamily: fonts.WorkSansMedium,
               }}
+              value={password}
+              onChangeText={text => setPassword(text)}
               placeholder="Password"
             />
             <TouchableOpacity
@@ -105,8 +117,10 @@ function Login({navigation}) {
           </Animatable.View>
         </View>
         <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('Data');
+          onPress={async () => {
+            const token = '#adw13@sf';
+            await AsyncStorage.setItem('token', token);
+            navigation.replace('Data');
           }}
           style={{
             marginTop: hp(4),

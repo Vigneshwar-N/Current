@@ -6,8 +6,10 @@ import Login from '../screens/Login';
 import DataContainer from '../apis/DataContainer';
 import {UserContextProvider} from '../Hooks/User';
 import SignUp from '../screens/SignUp';
+import Settings from '../screens/Settings';
 
 const Stack = createNativeStackNavigator();
+
 function RootStackContainer() {
   return (
     <Stack.Navigator
@@ -17,6 +19,7 @@ function RootStackContainer() {
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="Data" component={DataContainer} />
+      <Stack.Screen name="Settings" component={Settings} />
     </Stack.Navigator>
   );
 }
