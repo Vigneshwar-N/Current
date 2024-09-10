@@ -1,4 +1,5 @@
-import React, {useContext} from 'react';
+// List.js
+import React, {useContext, useEffect} from 'react';
 import {
   View,
   Text,
@@ -16,13 +17,10 @@ import {
 } from '../utility/responsive';
 import {fonts} from '../constants/fonts/font';
 import HeartImage from '../../assets/images/svgs/Home/Heart';
-import UseEffect from '../Hooks/UseEffect';
 import {myColor} from '../utility/Colors/myColors';
 import {SelectedItemContext} from '../apis/PassData';
-//redux
+import {fetchData} from '../../store/productSlice';
 import store from '../../store/store';
-import {Provider} from 'react-redux';
-import {ScreenStackHeaderRightView} from 'react-native-screens';
 
 //styles
 const styles = StyleSheet.create({
@@ -77,10 +75,41 @@ const styles = StyleSheet.create({
 //main
 export default function DataListing({navigation}) {
   const dispatch = useDispatch();
-  const Storage = UseEffect();
-  const {selectedItem, setSelectedItem} = useContext(SelectedItemContext);
-  console.log(`this is selected,${selectedItem}`);
+  const {setSelectedItem} = useContext(SelectedItemContext);
   const darkTheme = useSelector(state => state.theme.darkTheme);
+  const {data: Storage, loading, error} = useSelector(state => state.data);
+
+  useEffect(() => {
+    dispatch(fetchData());
+  }, [dispatch]);
+
+  if (loading) {
+    return (
+      <View style={styles.container}>
+        <Text
+          style={[
+            styles.title,
+            {color: darkTheme ? myColor.white : myColor.black},
+          ]}>
+          Loading...
+        </Text>
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View style={styles.container}>
+        <Text
+          style={[
+            styles.title,
+            {color: darkTheme ? myColor.white : myColor.black},
+          ]}>
+          Error: {error}
+        </Text>
+      </View>
+    );
+  }
 
   return (
     <View
@@ -183,7 +212,7 @@ export default function DataListing({navigation}) {
 
 export function List() {
   return (
-    <Provider store={store}>
+    <Provider Provider store={store}>
       <DataListing />
     </Provider>
   );
