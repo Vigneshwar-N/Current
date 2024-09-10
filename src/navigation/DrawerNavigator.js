@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import Settings from '../screens/Settings';
@@ -10,7 +10,6 @@ import {
   getResponsiveWidth,
 } from '../utility/responsive';
 import {fonts} from '../constants/fonts/font';
-import {ThemeContext} from '../Hooks/UseContext';
 import {heightPercentageToDP} from 'react-native-responsive-screen';
 import MenuImage from '../../assets/images/svgs/Home/Menu';
 import ProfileImage from '../../assets/images/svgs/Home/Profile';
