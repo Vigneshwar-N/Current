@@ -9,8 +9,7 @@ const store = configureStore({
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
-      serializableCheck: false, // Disables the middleware
-      immutableCheck: false, // Disables immutability checks (optional)
+      serializableCheck: false,
     }),
 });
 
