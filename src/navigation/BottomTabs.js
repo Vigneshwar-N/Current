@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Search from '../screens/Search';
 import HomeImage from '../../assets/images/svgs/Home/Home';
@@ -7,7 +7,6 @@ import {View, StyleSheet} from 'react-native';
 import {StackNavigator} from './NativeStack';
 import {getResponsiveHeight, getResponsiveWidth} from '../utility/responsive';
 import {myColor} from '../utility/Colors/myColors';
-import {ThemeContext} from '../Hooks/UseContext';
 import {useSelector} from 'react-redux';
 const Bottom = createBottomTabNavigator();
 
@@ -52,7 +51,6 @@ export function BottomNavigator() {
           tabBarHideOnKeyboard: true,
         })}>
         <Bottom.Screen name="Stack" component={StackNavigator} />
-        {/* <Bottom.Screen name="Home2" component={DrawerNavigator} /> */}
         <Bottom.Screen name="Search" component={Search} />
       </Bottom.Navigator>
     </View>

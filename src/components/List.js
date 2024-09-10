@@ -8,7 +8,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {
   getResponsiveFontSize,
   getResponsiveHeight,
@@ -19,8 +19,64 @@ import HeartImage from '../../assets/images/svgs/Home/Heart';
 import UseEffect from '../Hooks/UseEffect';
 import {myColor} from '../utility/Colors/myColors';
 import {SelectedItemContext} from '../apis/PassData';
+//redux
+import store from '../../store/store';
+import {Provider} from 'react-redux';
+import {ScreenStackHeaderRightView} from 'react-native-screens';
 
-export default function List({navigation}) {
+//styles
+const styles = StyleSheet.create({
+  container: {
+    marginTop: hp(7),
+    marginBottom: hp(2),
+  },
+  listContentContainer: {
+    alignItems: 'center',
+  },
+  itemContainer: {
+    alignItems: 'center',
+    marginBottom: getResponsiveHeight(30),
+  },
+  itemContent: {
+    height: getResponsiveHeight(210),
+    width: getResponsiveWidth(170),
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+  imageContainer: {
+    height: getResponsiveHeight(111),
+    width: getResponsiveWidth(111),
+    position: 'static',
+  },
+  image: {
+    height: '100%',
+    width: '100%',
+    resizeMode: 'contain',
+  },
+  heartIconContainer: {
+    position: 'absolute',
+    alignSelf: 'flex-end',
+  },
+  title: {
+    fontSize: getResponsiveFontSize(18),
+    fontFamily: fonts.PlayfairDisplayBold,
+    paddingRight: '0.1%',
+    paddingLeft: '0.1%',
+  },
+  shopNowContainer: {
+    borderBottomWidth: getResponsiveWidth(1.8),
+    alignItems: 'center',
+    borderColor: myColor.black,
+  },
+  shopNowText: {
+    fontSize: getResponsiveFontSize(14),
+    fontFamily: fonts.WorkSansMedium,
+  },
+});
+
+//main
+export default function DataListing({navigation}) {
+  const dispatch = useDispatch();
   const Storage = UseEffect();
   const {selectedItem, setSelectedItem} = useContext(SelectedItemContext);
   console.log(`this is selected,${selectedItem}`);
@@ -125,51 +181,10 @@ export default function List({navigation}) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    marginTop: hp(7),
-    marginBottom: hp(2),
-  },
-  listContentContainer: {
-    alignItems: 'center',
-  },
-  itemContainer: {
-    alignItems: 'center',
-    marginBottom: getResponsiveHeight(30),
-  },
-  itemContent: {
-    height: getResponsiveHeight(210),
-    width: getResponsiveWidth(170),
-    alignItems: 'center',
-    justifyContent: 'space-around',
-  },
-  imageContainer: {
-    height: getResponsiveHeight(111),
-    width: getResponsiveWidth(111),
-    position: 'static',
-  },
-  image: {
-    height: '100%',
-    width: '100%',
-    resizeMode: 'contain',
-  },
-  heartIconContainer: {
-    position: 'absolute',
-    alignSelf: 'flex-end',
-  },
-  title: {
-    fontSize: getResponsiveFontSize(18),
-    fontFamily: fonts.PlayfairDisplayBold,
-    paddingRight: '0.1%',
-    paddingLeft: '0.1%',
-  },
-  shopNowContainer: {
-    borderBottomWidth: getResponsiveWidth(1.8),
-    alignItems: 'center',
-    borderColor: myColor.black,
-  },
-  shopNowText: {
-    fontSize: getResponsiveFontSize(14),
-    fontFamily: fonts.WorkSansMedium,
-  },
-});
+export function List() {
+  return (
+    <Provider store={store}>
+      <DataListing />
+    </Provider>
+  );
+}

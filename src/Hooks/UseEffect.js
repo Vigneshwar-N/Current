@@ -1,8 +1,5 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {data} from '../constants/data';
+import {useEffect, useState} from 'react';
 import axios from 'axios';
-import {data2} from '../constants/data2';
 
 export default function UseEffect() {
   const [Storage, setStorage] = useState([]);
