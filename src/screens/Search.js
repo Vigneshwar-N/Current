@@ -19,11 +19,9 @@ import {
   getResponsiveWidth,
 } from '../utility/responsive';
 import {fonts} from '../constants/fonts/font';
-import {ThemeContext} from '../Hooks/UseContext';
 import {myColor} from '../utility/Colors/myColors';
 import {SelectedItemContext} from '../apis/PassData';
-import UseEffect from '../Hooks/UseEffect';
-import {FlatList, ScrollView} from 'react-native-gesture-handler';
+import {FlatList} from 'react-native-gesture-handler';
 import {data2} from '../constants/data2';
 import {useSelector} from 'react-redux';
 export default function Search({navigation}) {
@@ -32,7 +30,7 @@ export default function Search({navigation}) {
   const [input, setInput] = useState('');
   const [filteredData, setFilteredData] = useState([]);
   const {selectedItem, setSelectedItem} = useContext(SelectedItemContext);
-  const Storage = UseEffect();
+  const Storage = data2[0].products;
   // const Storage = data2[0].products;
   const data = useState(null);
 

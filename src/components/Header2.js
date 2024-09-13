@@ -4,7 +4,7 @@ import {
   StyleSheet,
   ImageBackground,
 } from 'react-native';
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -17,7 +17,6 @@ import {
 } from '../utility/responsive';
 import LeftArrow from '../../assets/images/svgs/Home/Left';
 import RightArrow from '../../assets/images/svgs/Home/Right';
-import {ThemeContext} from '../Hooks/UseContext';
 import {myColor} from '../utility/Colors/myColors';
 import CustomText from './Text';
 import UseEffect from '../Hooks/UseEffect';

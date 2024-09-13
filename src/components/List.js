@@ -1,4 +1,3 @@
-// List.js
 import React, {useContext, useEffect} from 'react';
 import {
   View,
@@ -8,8 +7,8 @@ import {
   FlatList,
   StyleSheet,
 } from 'react-native';
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {useDispatch, useSelector} from 'react-redux';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {
   getResponsiveFontSize,
   getResponsiveHeight,
@@ -19,10 +18,8 @@ import {fonts} from '../constants/fonts/font';
 import HeartImage from '../../assets/images/svgs/Home/Heart';
 import {myColor} from '../utility/Colors/myColors';
 import {SelectedItemContext} from '../apis/PassData';
-import {fetchData} from '../../store/productSlice';
-import store from '../../store/store';
+import {fetchData, loadOfflineData} from '../../store/productSlice';
 
-//styles
 const styles = StyleSheet.create({
   container: {
     marginTop: hp(7),
@@ -72,7 +69,6 @@ const styles = StyleSheet.create({
   },
 });
 
-//main
 export default function DataListing({navigation}) {
   const dispatch = useDispatch();
   const {setSelectedItem} = useContext(SelectedItemContext);
@@ -80,7 +76,15 @@ export default function DataListing({navigation}) {
   const {data: Storage, loading, error} = useSelector(state => state.data);
 
   useEffect(() => {
-    dispatch(fetchData());
+    const loadData = async () => {
+      try {
+        await dispatch(loadOfflineData()).unwrap();
+      } catch (err) {
+        await dispatch(fetchData());
+      }
+    };
+
+    loadData();
   }, [dispatch]);
 
   if (loading) {
@@ -212,7 +216,7 @@ export default function DataListing({navigation}) {
 
 export function List() {
   return (
-    <Provider Provider store={store}>
+    <Provider store={store}>
       <DataListing />
     </Provider>
   );
